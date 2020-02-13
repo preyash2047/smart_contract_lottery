@@ -103,7 +103,7 @@ describe('Simple Storage Contract', () => {
       assert.ok(output1.eq(0),"rollnumber storage should be updated with new rollNumber");
 
       //second time
-      const tx = await simpleStorageInstance.functions.updateRollNumber(newRollNo);
+      const rollNumberafter = await simpleStorageInstance.functions.updateRollNumber(newRollNo);
       const output = await simpleStorageInstance.functions.rollNumber();
       assert.ok(output.eq(newRollNo),"rollnumber storage should be updated with new rollNumber");
       console.log({rollNumberBefore})
