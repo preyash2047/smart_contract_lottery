@@ -89,24 +89,27 @@ describe('Simple Storage Contract', () => {
       );
     });
 
-    it('Should have initial value of Roll number as 0' , async() => {
+    it('should have initial value of rollNumber as 0', async() => {
       const output = await simpleStorageInstance.functions.rollNumber();
-      //console.log({output});
-      assert.ok(output.eq(0),"output should be equal to Zero as it is not initilaized yet");
+
+      // console.log({output});
+      assert.ok(output.eq(0), 'rollNumber should be equal to 0 as it is not initialised yet');
     });
-    it("When update fucntion is called, rollnumber sholud be updated",async() => {
+
+    it('when update function is called, rollNumber storage should be updated', async() => {
       const newRollNo = 345;
-      //first time
 
       const rollNumberBefore = await simpleStorageInstance.functions.rollNumber();
-      console.log({rollNumberBefore})
-      assert.ok(output1.eq(0),"rollnumber storage should be updated with new rollNumber");
+      console.log({rollNumberBefore});
 
-      //second time
-      const rollNumberafter = await simpleStorageInstance.functions.updateRollNumber(newRollNo);
-      const output = await simpleStorageInstance.functions.rollNumber();
-      assert.ok(output.eq(newRollNo),"rollnumber storage should be updated with new rollNumber");
-      console.log({rollNumberBefore})
+      const tx = await simpleStorageInstance.functions.updateRollNumber(newRollNo);
+      await tx.wait();
+
+      const rollNumberAfter = await simpleStorageInstance.functions.rollNumber();
+      console.log({rollNumberAfter});
+
+      assert.ok(rollNumberAfter.eq(newRollNo), 'rollNumber storage should be updated with new value');
+
     });
   });
 });
