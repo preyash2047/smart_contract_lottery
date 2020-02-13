@@ -107,6 +107,7 @@ describe('Simple Storage Contract', () => {
 
       const rollNumberAfter = await simpleStorageInstance.functions.rollNumber();
       console.log({rollNumberAfter});
+      //
 
       assert.ok(rollNumberAfter.eq(newRollNo), 'rollNumber storage should be updated with new value');
 
